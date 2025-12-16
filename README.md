@@ -181,6 +181,73 @@ Digital-Equalizer-MATLAB/
 
 ---
 
+I'll help you add the sections with the analysis graphs and Simulink scope outputs. Here are the sections to add to your README, along with instructions on where to place them.
+
+## 📈 Analysis & Results Section (Add after "Platform Requirements")
+
+---
+
+## 📊 Analysis & Results
+
+### Filter Response Analysis
+![Filter Response Analysis](docs/figures/filter-response-analysis.jpg)
+*Figure 1: Complete filter characterization showing individual band responses, combined response, phase response, and group delay*
+
+**Key Insights:**
+- **Top-Left**: Individual bandpass filter responses peaking at designated center frequencies (63 Hz, 250 Hz, 1 kHz, 4 kHz, 16 kHz)
+- **Top-Right**: Combined frequency response showing ±5.39 dB variation across the audio spectrum
+- **Bottom-Left**: Phase response with smooth, continuous transitions
+- **Bottom-Right**: Group delay < 5 ms across all frequencies, ensuring minimal phase distortion
+
+### Audio Analysis
+![Audio Analysis](docs/figures/audio-analysis.jpg)
+*Figure 2: Time and frequency domain analysis of input/output signals*
+
+**Components:**
+- **Top**: Input and output waveforms in time domain
+- **Middle**: Frequency spectra comparison showing equalization effects
+- **Bottom**: Equalizer frequency response overlay
+
+### Preset Comparison
+![Preset Comparison](docs/figures/preset-comparison.jpg)
+*Figure 3: Comparison of six preset configurations*
+
+**Visualization:**
+- **Left**: Frequency responses of all six presets (Flat, Bass, Treble, Vocal, Rock, Classical)
+- **Right**: Bar chart showing gain distribution across bands for each preset
+- Shows distinct tonal characteristics of each preset configuration
+
+---
+
+## 🎚️ Simulink Implementation Visuals
+
+### Complete Simulink Model
+![Simulink Model](docs/figures/simulink-model.jpg)
+*Figure 4: Complete 5-band graphic equalizer Simulink model showing parallel filter architecture*
+
+**Model Components:**
+1. **Input Block**: From Multimedia File for audio loading
+2. **Parallel Filter Structure**: Five identical processing branches
+3. **Gain/Slider Blocks**: Adjustable gain controls (-12 dB to +12 dB)
+4. **Summation Block**: Combines all filtered signals
+5. **Output Block**: To Audio Device for real-time playback
+6. **Scope Blocks**: For waveform visualization
+
+### Input/Output Waveforms
+![Input Waveform](docs/figures/input-waveform.jpg)
+*Figure 5: Input audio waveform displayed in Simulink scope*
+
+![Output Waveform](docs/figures/output-waveform.jpg)
+*Figure 6: Equalized output waveform demonstrating gain adjustment effects*
+
+**Scope Features:**
+- Real-time waveform display during simulation
+- Clear visualization of audio signal characteristics
+- Comparison of input vs. processed signals
+- Time-domain representation of equalization effects
+
+---
+
 ## 🤝 Team Members
 
 - **[Aleeza Rizwan](https://github.com/its-aleezA)**
