@@ -32,7 +32,7 @@ This project implements a digital graphic equalizer using parallel bandpass filt
 1. Download or clone the project files
 2. Ensure all MATLAB files are in the same directory:
    - `project.m` - Full MATLAB code
-   - `equalizer_model.slx` - Simulink model
+   - `EqualizerSimulinkModel.slx` - Simulink model
 
 ### 3. Running the MATLAB Implementation
 1. Open MATLAB and navigate to the project directory
@@ -49,7 +49,7 @@ project
 ### 4. Running the Simulink Implementation
 1. Open the Simulink model:
 ```matlab
-open equalizer_model.slx
+open EqualizerSimulinkModel.slx
 ```
 2. Configure simulation parameters:
    - Set stop time to `inf` for continuous operation
@@ -129,11 +129,11 @@ open equalizer_model.slx
 ```
 Digital-Equalizer-MATLAB/
 ├── MATLAB-files/
-│   ├── project.m                     # MATLAB code
+│   ├── project.m                           # MATLAB code
 ├── simulink-model/
-│   └── equalizer_model.slx           # Complete Simulink implementation
+│   └── EqualizerSimulinkModel.slx          # Complete Simulink implementation
 ├── assets/
-│   └── recorded_audio.mp3            # Sample audio clip
+│   └── recorded_audio.mp3                   # Sample audio clip
 └── docs/
     ├── figures/ 
     │    ├── audio-analysis.jpg
@@ -142,7 +142,7 @@ Digital-Equalizer-MATLAB/
     │    ├── output-waveform.jpg
     │    ├── preset-comparison.jpg
     │    └── simulink-model.jpg
-    └── project-report.docx           # Complete project report
+    └── project-report.docx                   # Complete project report
 ```
 
 ---
