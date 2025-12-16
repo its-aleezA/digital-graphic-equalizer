@@ -132,6 +132,8 @@ Digital-Equalizer-MATLAB/
 │   ├── project.m                     # MATLAB code
 ├── simulink-model/
 │   └── equalizer_model.slx           # Complete Simulink implementation
+├── assets/
+│   └── recorded_audio.mp3            # Sample audio clip
 └── docs/
     ├── figures/ 
     │    ├── audio-analysis.jpg
