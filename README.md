@@ -128,11 +128,18 @@ open equalizer_model.slx
 
 ```
 Digital-Equalizer-MATLAB/
-├── MATLAB Files/
+├── MATLAB-files/
 │   ├── project.m                     # MATLAB code
-├── Simulink Model/
+├── simulink-model/
 │   └── equalizer_model.slx           # Complete Simulink implementation
-└── Documentation/
+└── docs/
+    ├── figures/ 
+    │    ├── audio-analysis.jpg
+    │    ├── filter-response-analysis.jpg
+    │    ├── input-waveform.jpg
+    │    ├── output-waveform.jpg
+    │    ├── preset-comparison.jpg
+    │    └── simulink-model.jpg
     └── project-report.docx           # Complete project report
 ```
 
