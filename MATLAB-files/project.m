@@ -284,10 +284,13 @@ switch choice
         audio_data.types = {'speech', 'instrumental', 'symphonic'};
         
     case 4
-        fprintf('\nUsing default test signal (500 Hz sine wave)...\n');
+        fprintf('\nUsing White Noise (Best for testing EQ)...\n');
         duration = 3;
-        t = 0:1/Fs:duration;
-        audio = 0.8 * sin(2*pi*500*t)';
+        
+        % Generate White Noise (Contains ALL frequencies)
+        % This allows you to hear changes in Bass, Mids, and Treble
+        audio = 0.5 * randn(duration * Fs, 1);
+        
         audiowrite('test_default.wav', audio, Fs);
         audio_data.single_file = 'test_default.wav';
         audio_data.current_type = 'default';
@@ -405,7 +408,6 @@ fprintf('\nProcessing audio with 5-band equalizer...\n');
 
 % define the processing function
 function output = process_equalizer(input, Fs, B, A, gains_db)
-    
     % convert dB gains to linear scale
     gains_linear = 10.^(gains_db(:)'/20);
     
@@ -421,18 +423,23 @@ function output = process_equalizer(input, Fs, B, A, gains_db)
         output = output + gains_linear(band) * filtered;
     end
     
-    % prevent clipping
+    % --- FIXED NORMALIZATION LOGIC ---
+    % Instead of auto-maximizing volume (which hides EQ cuts),
+    % we only clip if it actually hits the ceiling.
+    % This allows you to hear if the signal gets quieter.
+    
     max_val = max(abs(output));
-    if max_val > 0.95
-        output = output / max_val * 0.95;
+    if max_val > 1.0
+        fprintf('  (Clipping prevention applied)\n');
+        output = output / max_val * 0.99;
     end
 end
 
 % define gain presets
 presets = struct();
 presets.flat =     [ 0,  0,  0,  0,  0];
-presets.bass =     [+12, +8,  0, -6, -12];
-presets.treble =   [-12, -6,  0, +8, +12];
+presets.bass =     [+12,   +6,    -12,   -12,   -12];
+presets.treble =   [-12,   -12,   -12,    +6,    +12];
 presets.vocal =    [-6,   0, +12, +6,  0];
 presets.rock =     [+8,  +4, -3, +4, +6];
 presets.classical =[+4,  +2,  0, +2, +4];
@@ -530,7 +537,7 @@ try
     if choice == 3
         output_file = 'output_speech_flat.wav';
     else
-        output_file = 'output_flat.wav';
+        output_file = 'output_bass.wav';
     end
     [proc_audio, ~] = audioread(output_file);
     if length(t) > length(proc_audio)
@@ -667,6 +674,7 @@ if choice == 3
         current_type = audio_data.types{type_idx};
         current_audio = audio_data.(current_type);
         
+        
         fprintf('\nTesting %s audio:\n', current_type);
         fprintf('Press Enter to hear ORIGINAL %s audio (3 seconds)...\n', current_type);
         pause;
@@ -683,9 +691,9 @@ if choice == 3
             output_file = sprintf('output_%s_flat.wav', current_type);
             [proc_audio, ~] = audioread(output_file);
             if length(proc_audio) >= 3*Fs
-                soundsc(proc_audio(1:3*Fs), Fs);
+                sound(proc_audio(1:3*Fs), Fs);
             else
-                soundsc(proc_audio, Fs);
+                sound(proc_audio, Fs);
             end
         catch
             fprintf('Could not play %s flat preset audio\n', current_type);
@@ -696,20 +704,20 @@ else
     fprintf('Press Enter to hear ORIGINAL audio (3 seconds)...\n');
     pause;
     if length(audio) >= 3*Fs
-        soundsc(audio(1:3*Fs), Fs);
+        sound(audio(1:3*Fs), Fs);
     else
-        soundsc(audio, Fs);
+        sound(audio, Fs);
     end
     pause(4);
 
-    fprintf('Press Enter to hear FLAT preset (3 seconds)...\n');
+    fprintf('Press Enter to hear TREBLE preset (3 seconds)...\n');
     pause;
     try
-        [proc_flat, ~] = audioread('output_flat.wav');
+        [proc_flat, ~] = audioread('output_treble.wav');
         if length(proc_flat) >= 3*Fs
-            soundsc(proc_flat(1:3*Fs), Fs);
+            sound(proc_flat(1:3*Fs), Fs);
         else
-            soundsc(proc_flat, Fs);
+            sound(proc_flat, Fs);
         end
     catch
         fprintf('Could not play flat preset audio\n');
