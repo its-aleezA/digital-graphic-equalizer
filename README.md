@@ -2,7 +2,8 @@
 
 A complete 5-band digital graphic equalizer designed and implemented in MATLAB and Simulink for audio signal processing. This project demonstrates Butterworth filter design, constant-Q characteristics, and real-time audio processing with comprehensive visualization and analysis.
 
-> **Note**: This project was developed for educational purposes as part of the EE-232 Signals & Systems course at NUST. It demonstrates digital filter design, frequency response analysis, and audio processing concepts.
+> [!NOTE]
+> This project was developed for educational purposes as part of the EE-232 Signals & Systems course at NUST. It demonstrates digital filter design, frequency response analysis, and audio processing concepts.
 
 **Key Features**:
 - ✅ **5-band Butterworth filters** at ISO standard frequencies (63 Hz, 250 Hz, 1 kHz, 4 kHz, 16 kHz)
@@ -292,4 +293,5 @@ This project was developed for educational purposes as part of the EE-232 Signal
 
 ---
 
-_Note: This project demonstrates academic concepts in digital signal processing. For professional audio applications, consider higher sampling rates and more advanced filter designs._
+> [!NOTE]
+> This project demonstrates academic concepts in digital signal processing. For professional audio applications, consider higher sampling rates and more advanced filter designs.
